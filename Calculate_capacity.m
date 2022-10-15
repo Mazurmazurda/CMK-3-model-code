@@ -1,0 +1,11 @@
+load('LiCl_D65_03.mat');
+sigma_minus=load('LiCl_D65_06_minusepsilon_m02_7R.mat','sum');
+sigma_plus=load('LiCl_D65_06_plusepsilon_m02_7R.mat','sum');
+C=struct2cell(sigma_plus);
+D=struct2cell(sigma_minus);
+sigma_minus=cat(2,D{:});
+sigma_plus=cat(2,C{:});
+epsilon=0.001*charge/kB/T;
+rev=charge/lD^2/kB/T;
+dsigma=-((sigma_plus-sigma_minus)/S)/(2*epsilon)
+dsigma_n=dsigma*rev
